@@ -192,6 +192,12 @@ footer {
 
 
 
+
+
+
+
+
+
 /* ==BUILD-CSS== 以下由 build.py 產生，勿手改 */
 .chip.c-plan { border-color: #7d8f77; color: #4a5a46; }
 .chip.c-shop { border-color: #a8845c; color: #7a5c34; }
@@ -206,10 +212,23 @@ header.top a.hdr { color: var(--paper); text-decoration: none; border-bottom: 1p
 .hdr-addr { display:inline-block; margin-top:2px; font-size: 12px; color: var(--azul-pale); opacity:.85; }
 ul.risk .lv { font-size: 10.5px; }
 
+/* ---- 懶人包入口 ---- */
+a.gotoplaces {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-top: 16px; padding: 11px 14px;
+  background: rgba(246,243,236,.12); border: 1px solid rgba(246,243,236,.42);
+  border-radius: 8px; color: var(--paper); text-decoration: none;
+  font-size: 14.5px; font-weight: 600;
+}
+a.gotoplaces span { font-size: 17px; opacity: .8; }
+a.gotoplaces:hover { background: rgba(246,243,236,.2); }
+.footer-places { margin: 0 0 10px; font-size: 14px; }
+.footer-places a { font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+
 /* ---- 列印／存 PDF：兩個分頁都要出現 ---- */
 @media print {
   body { padding-bottom: 0; }
-  .topbar { display: none !important; }
+  .topbar, a.gotoplaces { display: none !important; }
   #tab-days[hidden], #tab-notes[hidden] { display: block !important; }
   section.day { break-inside: avoid; page-break-inside: avoid; }
   .route, .eat li, ul.gloss li, ul.risk li { break-inside: avoid; }
@@ -346,6 +365,7 @@ ul.risk li:last-child { border-bottom: none; }
       <span>波多住宿：<a class="hdr" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Faria%20Guimar%C3%A3es%20779%2C%204200-291%20Porto" target="_blank" rel="noopener"><b>Hotel Palanca</b></a><br><span class="hdr-addr">R. de Faria Guimarães 779, 4200-291 Porto</span></span>
       <span>里斯本住宿：<a class="hdr" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener"><b>Residence Metro-Alameda</b></a><br><span class="hdr-addr">Av. Guerra Junqueiro 14, 1000-167 Lisboa</span></span>
     </div>
+<a class="gotoplaces" href="places.html">店家與景點懶人包 · 64 個地點 <span>→</span></a>
   </div>
 </header>
 
@@ -613,6 +633,7 @@ ul.risk li:last-child { border-bottom: none; }
 </main>
 
 <footer>
+  <p class="footer-places"><a href="places.html">→ 店家與景點懶人包</a>（可搜尋、可依城市篩選）</p>
   點地點名稱可直接開 Google Maps 導航。這份網頁需要網路，建議同時保留手機裡的離線 PDF 備用版。
 </footer>
 
