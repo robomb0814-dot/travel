@@ -1,1 +1,468 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>葡萄牙行程 · 9/29–10/12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f6f3ec;
+  --ink: #1f2a37;
+  --azul: #1e3f66;
+  --azul-deep: #14304f;
+  --azul-pale: #dbe6f0;
+  --terra: #b5502f;
+  --terra-pale: #f3ddd2;
+  --line: #c9c2b2;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  padding-bottom: 60px;
+}
+a { color: var(--azul); }
+a:focus-visible, .chip:focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; }
+
+/* header */
+header.top {
+  padding: 44px 20px 28px;
+  background: var(--azul);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+header.top::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(246,243,236,0.055) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(246,243,236,0.055) 0 2px, transparent 2px 22px);
+  pointer-events: none;
+}
+header.top .inner { position: relative; max-width: 640px; margin: 0 auto; }
+header.top .eyebrow { font-size: 13px; letter-spacing: 0.04em; color: var(--azul-pale); margin: 0 0 6px; }
+header.top h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(34px, 9vw, 52px);
+  margin: 0 0 10px;
+  line-height: 1.05;
+}
+header.top .dates { font-size: 15px; color: var(--azul-pale); }
+header.top .stay { margin-top: 18px; font-size: 13.5px; color: var(--azul-pale); display:flex; flex-wrap:wrap; gap: 6px 18px; }
+header.top .stay b { color: var(--paper); font-weight: 600; }
+
+/* nav */
+nav.jump {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 14px;
+  display: flex; gap: 8px; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+nav.jump::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto;
+  font-size: 13px; font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #fff;
+  white-space: nowrap;
+}
+.chip.c-porto { border-color: var(--azul); color: var(--azul); }
+.chip.c-lisbon { border-color: var(--terra); color: var(--terra); }
+.chip.c-move { color: #6b6250; }
+
+main { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+.city-divider {
+  margin: 36px 0 18px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 22px;
+}
+.city-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.city-divider.porto { color: var(--azul); }
+.city-divider.lisbon { color: var(--terra); }
+
+section.day {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+section.day:last-child { border-bottom: none; }
+.day-head { margin-bottom: 10px; }
+.day-head .tag {
+  display: inline-block;
+  font-size: 11.5px;
+  padding: 2px 9px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.c-porto .tag { background: var(--azul-pale); color: var(--azul-deep); }
+.c-lisbon .tag { background: var(--terra-pale); color: var(--terra); }
+.c-move .tag { background: #eae5d8; color: #6b6250; }
+
+.day-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 21px;
+  margin: 0;
+  line-height: 1.3;
+}
+.day-head .date { font-variant-numeric: tabular-nums; }
+.day-head .weekday { font-weight: 400; color: #8a8371; margin-right: 8px; }
+
+.day-body p { margin: 0 0 10px; font-size: 15px; }
+.day-body p:last-child { margin-bottom: 0; }
+.day-body strong { color: var(--azul); }
+
+.pin {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.pin-note { font-size: 13px; color: #6b6250; margin-left: 4px; }
+
+.alert {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--terra-pale);
+  border-left: 3px solid var(--terra);
+  border-radius: 4px;
+  font-size: 13.5px;
+  color: #7a3820;
+}
+
+footer {
+  max-width: 640px; margin: 40px auto 0; padding: 24px 20px 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px; color: #8a8371;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==BUILD-CSS== 以下由 build.py 產生，勿手改 */
+.chip.c-plan { border-color: #7d8f77; color: #4a5a46; }
+.chip.c-shop { border-color: #a8845c; color: #7a5c34; }
+.shopbox .tag { background: #efe3d2; color: #7a5c34; }
+.shopbox h2 { color: #7a5c34; }
+.chip.c-stn { border-color: #6b7a8f; color: #3d4a5c; }
+.stationbox .tag { background: #dee3ea; color: #3d4a5c; }
+.stationbox h2 { color: #3d4a5c; }
+.sub { font-size: 12.5px; color: #8a8371; }
+header.top .stay { align-items: flex-start; }
+header.top a.hdr { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(246,243,236,.5); }
+.hdr-addr { display:inline-block; margin-top:2px; font-size: 12px; color: var(--azul-pale); opacity:.85; }
+ul.risk .lv { font-size: 10.5px; }
+
+/* ---- 分頁 ---- */
+[hidden] { display: none !important; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--paper); border-bottom: 1px solid var(--line);
+}
+nav.tabs { display: flex; border-bottom: 1px solid var(--line); }
+.tab {
+  flex: 1; background: none; border: 0; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; padding: 12px 8px; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 600; color: #8a8371;
+}
+.tab.active { color: var(--azul); border-bottom-color: var(--azul); }
+.tab:focus-visible { outline: 3px solid var(--terra); outline-offset: -3px; }
+nav.jump { position: static; border-bottom: none; }
+section.day { scroll-margin-top: 104px; }
+
+/* ---- 路線摘要 ---- */
+.route {
+  background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--azul);
+  border-radius: 4px; padding: 10px 12px; margin: 0 0 14px;
+  font-size: 14px; line-height: 2.05;
+}
+.route + .route { margin-top: -4px; }
+.c-lisbon .route { border-left-color: var(--terra); }
+.c-move .route { border-left-color: #8a8371; }
+.route .rlabel {
+  display: block; font-size: 11px; letter-spacing: .06em; font-weight: 700;
+  color: #8a8371; margin-bottom: 3px; line-height: 1.4;
+}
+.route .rp { font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; color: var(--azul); }
+.c-lisbon .route .rp { color: var(--terra); }
+.c-move .route .rp { color: var(--azul-deep); }
+.route .plain { color: #6b6250; }
+.route .sep { color: #b8b0a0; margin: 0 4px; }
+
+/* ---- 雨備規則 ---- */
+.planbox { border-top: 2px solid var(--line); }
+.planbox .tag { background: #e3e8de; color: #4a5a46; }
+.planbox h2 { color: #4a5a46; }
+.psub {
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 15px;
+  margin: 16px 0 6px; color: #6b6250;
+}
+ul.risk { list-style: none; margin: 0; padding: 0; }
+ul.risk li {
+  font-size: 14.5px; line-height: 1.65;
+  padding: 7px 0; border-bottom: 1px dashed #ded7c6;
+}
+ul.risk li:last-child { border-bottom: none; }
+.lv {
+  display: inline-block; min-width: 20px; text-align: center;
+  font-size: 11.5px; font-weight: 700; padding: 1px 6px;
+  border-radius: 3px; margin-right: 7px; vertical-align: 1px;
+}
+.lv.hi  { background: var(--terra-pale); color: var(--terra); }
+.lv.mid { background: #f2ead6; color: #8a6a1f; }
+.lv.low { background: var(--azul-pale); color: var(--azul-deep); }
+
+/* ---- 餐廳條列 ---- */
+.eat { margin-top: 16px; }
+.eat h3 {
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 15px;
+  margin: 0 0 6px; color: #6b6250; display: flex; align-items: center; gap: 10px;
+}
+.eat h3::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.eat ul { list-style: none; margin: 0; padding: 0; }
+.eat li {
+  position: relative; padding: 7px 0 7px 15px;
+  border-bottom: 1px dashed #ded7c6; font-size: 14.5px; line-height: 1.6;
+}
+.eat li:last-child { border-bottom: none; }
+.eat li::before {
+  content: ""; position: absolute; left: 2px; top: 15px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--azul);
+}
+.c-lisbon .eat li::before { background: var(--terra); }
+.c-move .eat li::before { background: #8a8371; }
+.eat .ename { font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; color: var(--azul); }
+.c-lisbon .eat .ename { color: var(--terra); }
+.eat .ename.plain { color: var(--ink); border-bottom: none; }
+.eat .etype { color: #6b6250; font-size: 13px; }
+.eat .ehours { display: block; font-size: 12.5px; color: #8a8371; margin-top: 1px; }
+.eat .ehours.warn { color: var(--terra); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <p class="eyebrow">SOLO TRIP · PORTUGAL</p>
+    <h1>葡萄牙</h1>
+    <p class="dates">2026 年 9 月 29 日 – 10 月 12 日</p>
+    <div class="stay">
+      <span>波多住宿：<a class="hdr" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Faria%20Guimar%C3%A3es%20779%2C%204200-291%20Porto" target="_blank" rel="noopener"><b>Hotel Palanca</b></a><br><span class="hdr-addr">R. de Faria Guimarães 779, 4200-291 Porto</span></span>
+      <span>里斯本住宿：<a class="hdr" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener"><b>Residence Metro-Alameda</b></a><br><span class="hdr-addr">Av. Guerra Junqueiro 14, 1000-167 Lisboa</span></span>
+    </div>
+  </div>
+</header>
+
+<div class="topbar" id="topbar"><nav class="tabs"><button class="tab active" type="button" data-tab="days">行程</button><button class="tab" type="button" data-tab="notes">注意事項</button></nav><nav class="jump" id="nav-days"><a href="#d-9-29" class="chip c-move">9/29</a><a href="#d-9-30" class="chip c-move">9/30</a><a href="#d-10-1" class="chip c-porto">10/1</a><a href="#d-10-2" class="chip c-porto">10/2</a><a href="#d-10-3" class="chip c-porto">10/3</a><a href="#d-10-4" class="chip c-porto">10/4</a><a href="#d-10-5" class="chip c-porto">10/5</a><a href="#d-10-6" class="chip c-porto">10/6</a><a href="#d-10-7" class="chip c-porto">10/7</a><a href="#d-10-8" class="chip c-lisbon">10/8</a><a href="#d-10-9" class="chip c-lisbon">10/9</a><a href="#d-10-10" class="chip c-lisbon">10/10</a><a href="#d-10-11" class="chip c-lisbon">10/11</a><a href="#d-10-12" class="chip c-move">10/12</a></nav><nav class="jump" id="nav-notes" hidden><a href="#plan" class="chip c-plan">雨備</a><a href="#shop" class="chip c-shop">伴手禮</a><a href="#station" class="chip c-stn">車站</a></nav></div>
+
+<main>
+<div id="tab-days">
+<section id="d-9-29" class="day c-move"><div class="day-head"><span class="tag">移動日</span><h2><span class="date">9/29</span><span class="weekday">（二）</span>出發</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Taoyuan%20International%20Airport" target="_blank" rel="noopener">桃園機場 19:40</a><span class="sep">→</span><span class="plain">阿布達比轉機</span><span class="sep">→</span><span class="plain">隔日 07:00+ 抵里斯本</span></div><p>阿提哈德航空，經阿布達比轉機。提前吃飽、備好頸枕，長程轉機在阿布達比休息。</p></div></section>
+<section id="d-9-30" class="day c-move"><div class="day-head"><span class="tag">移動日</span><h2><span class="date">9/30</span><span class="weekday">（三）</span>抵達里斯本 → 轉往波多</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Aeroporto%20Humberto%20Delgado%2C%20Lisboa" target="_blank" rel="noopener">里斯本機場</a><span class="sep">→</span><span class="plain">通關 1.5–2.5h</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20do%20Oriente%2C%20Lisboa" target="_blank" rel="noopener">Lisboa Oriente 站</a><span class="sep">→</span><span class="plain">AP 火車 2h50</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Porto Campanhã 站</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Faria%20Guimar%C3%A3es%20779%2C%204200-291%20Porto" target="_blank" rel="noopener">Hotel Palanca</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Pra%C3%A7a%20da%20Ribeira%2C%204050-513%20Porto" target="_blank" rel="noopener">Praça da Ribeira</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Ponte%20Lu%C3%ADs%20I%2C%20Porto" target="_blank" rel="noopener">Ponte Luís I</a></div><p>早上 7 點多落地里斯本。行李提領＋入境約 1 小時，但考量首次過 EES 生物辨識＋早班機尖峰，<strong>通關建議抓 1.5–2.5 小時緩衝</strong>。</p><p>轉往波多：Alfa Pendular（AP）從 Oriente 站出發，約 2 小時 50 分直達 Campanhã。先裝好 CP app，落地確認實際通關時間後再現場訂票，抓比預估到站時間晚 30–45 分鐘的班次。</p><p>傍晚體力允許再到河岸走走，<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Ponte%20Lu%C3%ADs%20I%2C%20Porto" target="_blank" rel="noopener">Ponte Luís I 路易一世大橋</a>（上層人行道走過去就是對岸，視野最好）、對岸 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Cais%20de%20Gaia%2C%20Vila%20Nova%20de%20Gaia" target="_blank" rel="noopener">Vila Nova de Gaia</a> 的酒窖建築在晚霞時分很上鏡。</p></div></section>
+<div class="city-divider porto">波多</div>
+<section id="d-10-1" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/1</span><span class="weekday">（四）</span>吉馬良斯一日遊</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento 車站</a><span class="sep">→</span><span class="plain">Urbanos 約 1h15</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Castelo%20de%20Guimar%C3%A3es%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Castelo de Guimarães</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Pa%C3%A7o%20dos%20Duques%20de%20Bragan%C3%A7a%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Paço dos Duques</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Largo%20da%20Oliveira%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Largo da Oliveira</a><span class="sep">→</span><span class="plain">舊城石板街</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Penha%20Cable%20Car%20Lower%20Station%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Penha Cable Car</a></div><p><strong>落地隔天，強度刻意壓低</strong>：火車 1 小時多、自己控節奏，累了隨時搭車回波多。時差最重的一天不排跟團。</p><p><strong>從 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a> 上車</strong>，不是 Campanhã — 住宿搭地鐵 D 線（黃線）可以直達 São Bento 不用轉車，而 Campanhã 不在 D 線上，還要在 Trindade 換車。Urbanos 班次頻繁、現場買票即可。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Castelo%20de%20Guimar%C3%A3es%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Castelo de Guimarães</a> 和隔壁的 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Pa%C3%A7o%20dos%20Duques%20de%20Bragan%C3%A7a%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Paço dos Duques</a> 是聯票 €8（單買各 €5），每天 10:00–18:00、最後入場 17:30，全年無週休。</p><p>舊城中世紀石板街（起點 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Largo%20da%20Oliveira%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Largo da Oliveira</a>），「葡萄牙誕生地」，巷弄光影適合近拍。週四商店都開，Rua de Santa Maria 沿路小店可以逛。</p><p>體力允許可延伸 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Penha%20Cable%20Car%20Lower%20Station%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Penha Cable Car</a> 上山看全景。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Largo%20Martins%20Sarmento%2089%2C%204800-432%20Guimar%C3%A3es" target="_blank" rel="noopener">Cor de Tangerina</a> <span class="etype">蔬食 · 老宅＋花園座位，往城堡路上</span><span class="ehours">午餐 · 平日時段比週日長（週日才只做 12:00–16:00），出發前確認</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Largo%20da%20Oliveira%201-3%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Café Coconuts</a> <span class="etype">咖啡／輕食 · 露天座正對教堂與哥德式拱亭</span><span class="ehours">廣場最好的取景位</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Santa%20Maria%2044%2C%204800-433%20Guimar%C3%A3es" target="_blank" rel="noopener">Pastelaria Clarinha</a> <span class="etype">1953 老餅舖 · torta de Guimarães、toucinho do céu</span><span class="ehours">甜點外帶 · 08:00–20:00</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Taberna%20Trovador%2C%20Guimar%C3%A3es" target="_blank" rel="noopener">Taberna Trovador</a> <span class="etype">石牆小酒館 · petiscos 小盤制，單人友善</span><span class="ehours">傍晚喝一杯</span></li></ul></div><div class="alert">這天可長可短 — 落地隔天以恢復為主，逛不完不用勉強，波多回程火車班次到很晚</div></div></section>
+<section id="d-10-2" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/2</span><span class="weekday">（五）</span>市區慢逛 + 晚上 Switch</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20do%20Morgado%20de%20Mateus%2029%2C%204000-334%20Porto" target="_blank" rel="noopener">Combi Coffee Roasters</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Centro%20Portugu%C3%AAs%20de%20Fotografia%2C%20Porto" target="_blank" rel="noopener">攝影博物館 CPF</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Carmelitas%20144%2C%204050-161%20Porto" target="_blank" rel="noopener">Livraria Lello</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Igreja%20do%20Carmo%2C%20Porto" target="_blank" rel="noopener">Igreja do Carmo</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Torre%20dos%20Cl%C3%A9rigos%2C%20Porto" target="_blank" rel="noopener">Torre dos Clérigos</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Jardim%20das%20Virtudes%2C%20Porto" target="_blank" rel="noopener">Jardim das Virtudes</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Vit%C3%B3ria%2C%20Porto" target="_blank" rel="noopener">Miradouro da Vitória</a><span class="sep">→</span><span class="plain">日落</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Virtudes%2032%2C%204050-623%20Porto" target="_blank" rel="noopener">Taberna Santo António</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Rua%20de%20J%C3%BAlio%20Dinis%20766%2C%204050-101%20Porto" target="_blank" rel="noopener">Switch</a></div><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Centro%20Portugu%C3%AAs%20de%20Fotografia%2C%20Porto" target="_blank" rel="noopener">攝影博物館 Centro Português de Fotografia</a> 免費，前身是 18 世紀監獄，整層老相機收藏＋攝影展。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Carmelitas%20144%2C%204050-161%20Porto" target="_blank" rel="noopener">Livraria Lello</a> 需上 lello.pt <strong>提前 3–5 天訂票</strong>，不能現場買；出來<strong>隔壁就是 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Igreja%20do%20Carmo%2C%20Porto" target="_blank" rel="noopener">Igreja do Carmo</a></strong>，側牆整面藍白花磚，走三十秒就到；<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Torre%20dos%20Cl%C3%A9rigos%2C%20Porto" target="_blank" rel="noopener">Clérigos 塔</a> 周邊窄巷適合拍老城細節。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Jardim%20das%20Virtudes%2C%20Porto" target="_blank" rel="noopener">Jardim das Virtudes</a> 和隔壁的 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Vit%C3%B3ria%2C%20Porto" target="_blank" rel="noopener">Miradouro da Vitória</a> 是俯瞰河谷屋頂的日落點，遊客比 Ribeira 少很多。</p><p>順路可加 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Capela%20das%20Almas%2C%20R.%20de%20Santa%20Catarina%20428%2C%20Porto" target="_blank" rel="noopener">Capela das Almas</a>（藍白花磚）、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Jardins%20do%20Pal%C3%A1cio%20de%20Cristal%2C%20Porto" target="_blank" rel="noopener">Jardins do Palácio de Cristal</a>（花園＋孔雀＋河景）、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20Miguel%20Bombarda%2C%20Porto" target="_blank" rel="noopener">Rua Miguel Bombarda</a>（藝廊選品店街）。</p><p>晚上從 Boavista 回住宿務必叫 Bolt／Uber，不要走路。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20do%20Morgado%20de%20Mateus%2029%2C%204000-334%20Porto" target="_blank" rel="noopener">Combi Coffee Roasters</a> <span class="etype">精品咖啡烘豆店</span><span class="ehours">上午 · Bonfim，離市中心車程 10–15 分</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20Fernandes%20Tom%C3%A1s%20128%2C%204000-209%20Porto" target="_blank" rel="noopener">Fábrica Coffee Roasters</a> <span class="etype">市中心替代選擇</span><span class="ehours">上午 · 不想跑遠就選這間</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Virtudes%2032%2C%204050-623%20Porto" target="_blank" rel="noopener">Taberna Santo António</a> <span class="etype">燉章魚 Polvo à Lagareiro</span><span class="ehours">晚餐 · 就在 Miradouro da Vitória 旁走路 1 分鐘</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Santa%20Catarina%20112%2C%204000-442%20Porto" target="_blank" rel="noopener">Majestic Café</a> <span class="etype">1921 年 Art Nouveau 老咖啡館</span><span class="ehours">想喝下午茶可插進來，週日公休</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Rua%20de%20J%C3%BAlio%20Dinis%20766%2C%204050-101%20Porto" target="_blank" rel="noopener">Switch</a> <span class="etype">夜店 · Boavista，近 Casa da Música</span><span class="ehours">週五 22:00 開始營業</span></li></ul></div><div class="alert">Lello 需提前 3–5 天訂票／Switch 建議先查是否需線上預售票</div></div></section>
+<section id="d-10-3" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/3</span><span class="weekday">（六）</span>Serralves + 海邊（緩衝日）</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Carmelitas%20151%2C%204050-163%20Porto" target="_blank" rel="noopener">Base Porto</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Museu%20de%20Serralves%2C%20Porto" target="_blank" rel="noopener">Casa de Serralves</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Farol%20de%20Felgueiras%2C%20Porto" target="_blank" rel="noopener">Farol de Felgueiras</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Foz%20do%20Douro%2C%20Porto" target="_blank" rel="noopener">Foz do Douro 海岸線</a><span class="sep">→</span><span class="plain">傍晚海鮮＋Vinho Verde</span></div><p>昨晚玩晚了，今天晚起沒關係，這天刻意排得鬆。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Museu%20de%20Serralves%2C%20Porto" target="_blank" rel="noopener">Casa de Serralves</a>：美術館＋粉紅 Art Deco 別墅＋公園，玫瑰園和建築線條適合定焦鏡拍細節，可以待 2–3 小時。</p><p>出來後順路走到 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Farol%20de%20Felgueiras%2C%20Porto" target="_blank" rel="noopener">Farol de Felgueiras</a>，沿 Foz do Douro 海岸線散步，礁石、燈塔、看海。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Carmelitas%20151%2C%204050-163%20Porto" target="_blank" rel="noopener">Base Porto</a> <span class="etype">戶外庭院咖啡吧，就在 Clérigos 塔旁</span><span class="ehours">晚起 brunch 首選</span></li><li><span class="ename plain">Foz 海邊海鮮小館／petiscos 酒吧</span><span class="ehours">傍晚 · 配一杯 Vinho Verde 收尾</span></li></ul></div><div class="alert">Serralves 建議線上先買票（10/3 是週六，人潮較多）</div></div></section>
+<section id="d-10-4" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/4</span><span class="weekday">（日）</span>度羅河谷一日遊</h2></div><div class="day-body"><div class="route"><span class="rlabel">跟團 · 約 08:30 出發</span><span class="plain">酒莊參觀</span><span class="sep">→</span><span class="plain">品酒</span><span class="sep">→</span><span class="plain">度羅河遊船</span><span class="sep">→</span><span class="plain">含午餐</span><span class="sep">→</span><span class="plain">傍晚回波多</span></div><p><strong>為什麼排週日</strong>：跟團不受商店公休影響，而且你已經在波多待了四天、時差調過來了 — 這是整趟最貴、最需要精神的一天，不該放在剛落地的時候。</p><p>河谷梯田、酒莊建築、葡式花磚都適合 40mm 定焦視角，午後光線比正中午柔和。<strong>薄雲比大晴天好拍</strong>，門檻是「沒在下雨」而不是「出太陽」。</p><p>出發前把電池充飽、記憶卡清空。回程簡單吃點東西早點休息。</p><div class="eat"><h3>吃</h3><ul><li><span class="ename plain">午餐通常含在團費內</span><span class="ehours">回程若想再吃，波多市區小館多開到 22:00 後</span></li></ul></div><div class="alert">訂<strong>免費取消</strong>的場次（出發前 24h 全額退），並確認該場次真的含酒莊導覽、不是只有遊船＋午餐。10/3 前看 IPMA 決定要不要改期 — 詳見下方雨備規則</div></div></section>
+<section id="d-10-5" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/5</span><span class="weekday">（一）</span>布拉加 + 耶穌山</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento 車站</a><span class="sep">→</span><span class="plain">Urbanos 約 1h</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Santu%C3%A1rio%20do%20Bom%20Jesus%20do%20Monte%2C%20Braga" target="_blank" rel="noopener">Bom Jesus do Monte</a><span class="sep">→</span><span class="plain">走上去 · 纜車下來</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Hotel%20do%20Elevador%2C%20Monte%20do%20Bom%20Jesus%2C%204710-455%20Braga" target="_blank" rel="noopener">Restaurante Panorâmico</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Av.%20Central%20118%2C%204710-229%20Braga" target="_blank" rel="noopener">Centésima Página</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Largo%20S%C3%A3o%20Jo%C3%A3o%20do%20Souto%201%2C%204700-326%20Braga" target="_blank" rel="noopener">Frigideiras do Cantinho</a></div><p>一樣從 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a> 搭 Urbanos，約 1 小時、單程 €3.60、現場買票。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Santu%C3%A1rio%20do%20Bom%20Jesus%20do%20Monte%2C%20Braga" target="_blank" rel="noopener">Bom Jesus do Monte</a> 之字型巴洛克階梯是布拉加最經典的畫面，<strong>建議上午去</strong>，順光、人潮少。</p><p>可以走路上去、纜車下來 — 這台 1882 年啟用的水壓平衡式纜車是全世界現存最古老的同型纜車，車廂本身就很值得拍。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Hotel%20do%20Elevador%2C%20Monte%20do%20Bom%20Jesus%2C%204710-455%20Braga" target="_blank" rel="noopener">Restaurante Panorâmico</a> <span class="etype">Hotel do Elevador 內 · 露台俯瞰整個布拉加，Minho 地方菜</span><span class="ehours">山上午餐 · 建議先訂位 +351 253 603 400</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Av.%20Central%20118%2C%204710-229%20Braga" target="_blank" rel="noopener">Centésima Página</a> <span class="etype">書店咖啡館 · 巴洛克老宅 Casa Rolão 內，附中庭花園</span><span class="ehours">布拉加最對你味的一站 · 週一 09:00–19:30 有開（週日才休）</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Largo%20S%C3%A3o%20Jo%C3%A3o%20do%20Souto%201%2C%204700-326%20Braga" target="_blank" rel="noopener">Frigideiras do Cantinho</a> <span class="etype">1796 年老店 · frigideira 是小份酥皮肉派，不是大份量那種</span><span class="ehours">週一 08:00–22:00</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Largo%20Bar%C3%A3o%20de%20S%C3%A3o%20Martinho%2017%2C%204700-306%20Braga" target="_blank" rel="noopener">Café A Brasileira</a> <span class="etype">1907 年歷史咖啡館 · 布拉加地標</span><span class="ehours">4–10 月每天 07:30–02:00</span></li></ul></div></div></section>
+<section id="d-10-6" class="day c-porto"><div class="day-head"><span class="tag">波多</span><h2><span class="date">10/6</span><span class="weekday">（二）</span>自選：波多深度日 / 阿威羅</h2></div><div class="day-body"><div class="route"><span class="rlabel">選項 A · 波多深度日</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20da%20Concei%C3%A7%C3%A3o%2026%2C%20Porto" target="_blank" rel="noopener">Yuko (Baixa)</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20das%20Flores%2022%2C%204050-262%20Porto" target="_blank" rel="noopener">Claus Porto 旗艦店</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20do%20Agro%20141%2C%204400-281%20Vila%20Nova%20de%20Gaia" target="_blank" rel="noopener">Graham's Port Lodge</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Mercado%20do%20Bolh%C3%A3o%2C%20Porto" target="_blank" rel="noopener">Mercado do Bolhão</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Capela%20das%20Almas%2C%20R.%20de%20Santa%20Catarina%20428%2C%20Porto" target="_blank" rel="noopener">Capela das Almas</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Santa%20Catarina%20112%2C%204000-442%20Porto" target="_blank" rel="noopener">Majestic Café</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Pal%C3%A1cio%20da%20Bolsa%2C%20Porto" target="_blank" rel="noopener">Palácio da Bolsa</a></div><div class="route"><span class="rlabel">選項 B · 阿威羅</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento 車站</a><span class="sep">→</span><span class="plain">Urbanos 約 1h15</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Aveiro%2C%20Aveiro" target="_blank" rel="noopener">Estação de Aveiro</a><span class="sep">→</span><span class="plain">moliceiro 遊河</span><span class="sep">→</span><span class="plain">Costa Nova 條紋小屋</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Capela%20do%20Senhor%20da%20Pedra%2C%20Miramar%2C%20Vila%20Nova%20de%20Gaia" target="_blank" rel="noopener">Capela do Senhor da Pedra</a></div><p><strong>選項 A</strong> 貼近慢旅步調：<a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20do%20Agro%20141%2C%204400-281%20Vila%20Nova%20de%20Gaia" target="_blank" rel="noopener">Graham's Port Lodge</a> 酒窖導覽品酒、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Mercado%20do%20Bolh%C3%A3o%2C%20Porto" target="_blank" rel="noopener">Mercado do Bolhão</a> 拍生活感畫面、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Pal%C3%A1cio%20da%20Bolsa%2C%20Porto" target="_blank" rel="noopener">Palácio da Bolsa</a> 需導覽入內。</p><p><strong>選項 B</strong> 想拍運河和彩色建築就走這條，建議早班火車避開午後人潮；<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Aveiro%2C%20Aveiro" target="_blank" rel="noopener">Estação de Aveiro</a> 本身就是花磚車站。</p><p>買伴手禮就趁選項 A：<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20das%20Flores%2022%2C%204050-262%20Porto" target="_blank" rel="noopener">Claus Porto 旗艦店</a>（R. das Flores 22，19 世紀老宅改的，本身就好拍）<strong>週二至週六 11:00–18:00、週日週一休</strong> — 這趟只有 10/2 和 10/6 去得成。R. das Flores 跟 Yuko 同一區，可以一次解決。</p><p><strong>兩個選項不衝突</strong>：阿威羅到波多火車約 1 小時，傍晚回得來，<a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20da%20Concei%C3%A7%C3%A3o%2026%2C%20Porto" target="_blank" rel="noopener">Yuko</a> 晚上開到 24:00 — 所以選 B 不等於放棄濕答答三明治，當晚餐吃就好。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20da%20Concei%C3%A7%C3%A3o%2026%2C%20Porto" target="_blank" rel="noopener">Yuko (Baixa)</a> <span class="etype">濕答答三明治 francesinha <strong>有半份</strong>，1/2 傳統口味 €11.50</span><span class="ehours"><strong>每天 12:30–14:30、19:00–24:00，全年無休</strong> — 所以選項 B 去阿威羅也吃得到，回波多當晚餐即可。常客滿，務必訂位 +351 910 803 512</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Santa%20Catarina%20112%2C%204000-442%20Porto" target="_blank" rel="noopener">Majestic Café</a> <span class="etype">Art Nouveau 老咖啡館</span><span class="ehours">選項 A 下午茶 · 週日公休</span></li><li><span class="ename plain">Aveiro 的 ovos moles</span> <span class="etype">當地蛋黃糖甜點</span><span class="ehours">選項 B · 車站周邊店家都有賣</span></li></ul></div><div class="alert">兩個選項都留著，當天視心情／體力決定 — 不管選哪個，francesinha 都吃得到</div></div></section>
+<section id="d-10-7" class="day c-porto"><div class="day-head"><span class="tag">波多 → 里斯本</span><h2><span class="date">10/7</span><span class="weekday">（三）</span>移動日 + 里斯本第一晚</h2></div><div class="day-body"><div class="route"><span class="rlabel">上午 · 退房後（帶著行李，全程平路）</span><span class="plain">11:00 退房</span><span class="sep">→</span><span class="plain">D 線直達</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento 車站</a><span class="sep">→</span><span class="plain">花磚大廳</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20das%20Flores%2022%2C%204050-262%20Porto" target="_blank" rel="noopener">Claus Porto 旗艦店</a><span class="sep">→</span><span class="plain">R. das Flores 午餐</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Porto Campanhã 站</a></div><div class="route"><span class="rlabel">傍晚 · 里斯本</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20do%20Oriente%2C%20Lisboa" target="_blank" rel="noopener">Lisboa Oriente 站</a><span class="sep">→</span><span class="plain">紅線 · 約 16:30</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener">Residence Metro-Alameda</a><span class="sep">→</span><span class="plain">放行李休息</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Livraria%20Bertrand%20Chiado%2C%20R.%20Garrett%2073%2C%20Lisboa" target="_blank" rel="noopener">Livraria Bertrand</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Manteigaria%2C%20R.%20do%20Loreto%202%2C%20Lisboa" target="_blank" rel="noopener">Manteigaria</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20S%C3%A3o%20Pedro%20de%20Alc%C3%A2ntara%2C%20Lisboa" target="_blank" rel="noopener">Miradouro de São Pedro de Alcântara</a><span class="sep">→</span><span class="plain">日落 19:10</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Flores%2041%2C%201200-193%20Lisboa" target="_blank" rel="noopener">By the Wine</a></div><p><strong>目標：Campanhã 13:30–14:00 出發，16:15–16:45 抵 Oriente。</strong>兩邊都不趕。</p><p><strong>關鍵：行李直接帶著走，不要寄放後再回頭拿。</strong>Palanca 在 Marquês、São Bento 在市中心，來回一趟就吃掉一小時。帶著走反而全程平路、零爬坡。</p><p>動線：11:00 退房 → 地鐵 D 線 Marquês 直達 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a>（約 8 分，不用轉車）→ 大廳看兩萬片 azulejo 壁畫，拖著行李也能待 → 出站走兩分鐘平路到 R. das Flores，<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20das%20Flores%2022%2C%204050-262%20Porto" target="_blank" rel="noopener">Claus Porto</a> 就在 22 號（11:00 開）→ 同一條街吃午餐 → 走回 São Bento 搭一站到 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Campanhã</a>。</p><p>原本排在這天的 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Igreja%20do%20Carmo%2C%20Porto" target="_blank" rel="noopener">Igreja do Carmo</a> 已經移到 10/2 — 它就在 Lello 隔壁，那天順手看掉，這天就不用拖著行李爬上坡。</p><p><strong>AP 在 Oriente 就下車</strong>，不要坐到終點 Santa Apolónia — Oriente 是紅線站，直達 Alameda 不用轉車。</p><p>抵達後：16:50 到 Alameda（住宿通常 14:00–15:00 起可入住，這個時間絕對 OK）、check in 放行李還能坐著喘一下、17:40 出門、綠線直達 Baixa-Chiado 約 18:00 到。<strong>天還亮著</strong>。</p><p>Chiado 白天逛：<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Livraria%20Bertrand%20Chiado%2C%20R.%20Garrett%2073%2C%20Lisboa" target="_blank" rel="noopener">Livraria Bertrand</a>（1732 年至今，金氏紀錄全世界持續營業最久的書店）、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Manteigaria%2C%20R.%20do%20Loreto%202%2C%20Lisboa" target="_blank" rel="noopener">Manteigaria</a> 現烤蛋塔、Rua Garrett 一帶。順路 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20da%20Miseric%C3%B3rdia%20135%2C%20Lisboa" target="_blank" rel="noopener">Claus Porto 里斯本店</a> 在等一下上山那條 R. da Misericórdia 上。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20S%C3%A3o%20Pedro%20de%20Alc%C3%A2ntara%2C%20Lisboa" target="_blank" rel="noopener">Miradouro de São Pedro de Alcântara</a> 看日落約 19:10，從 Chiado 走上去 12–15 分鐘。對面的 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Solar%20do%20Vinho%20do%20Porto%2C%20R.%20de%20S%C3%A3o%20Pedro%20de%20Alc%C3%A2ntara%2039%2C%20Lisboa" target="_blank" rel="noopener">Solar do Vinho do Porto</a>（19:00 關）想去就繞進去 — 但波特酒 10/4 度羅河谷已經喝過，純粹加分。</p><p>註：上山的 Elevador da Glória 纜車在 2025 年 9 月事故後停駛，2026 年是否復駛說法不一 — <strong>不要算進行程</strong>。</p><div class="eat"><h3>吃</h3><ul><li><span class="ename plain">R. das Flores 一帶午餐</span> <span class="etype">就在 São Bento 出站兩分鐘，行人徒步區</span><span class="ehours">出發前 · 跟 Claus Porto 同一條街，一次解決</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Manteigaria%2C%20R.%20do%20Loreto%202%2C%20Lisboa" target="_blank" rel="noopener">Manteigaria</a> <span class="etype">現烤蛋塔 · Chiado 店</span><span class="ehours">傍晚墊胃 · 站著吃配一杯 bica</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Flores%2041%2C%201200-193%20Lisboa" target="_blank" rel="noopener">By the Wine</a> <span class="etype">酒吧＋petiscos · 三千多支酒瓶鋪成的拱形天花板</span><span class="ehours">晚餐 19:30 · 週三 19:00–24:00，吧台單人友善</span></li></ul></div><div class="alert"><strong>不用為促銷票調整行程。</strong>14:40 那班促銷 €21.50、原價 €35.70，只差 €14.20（1.66 倍）— 買不回被壓縮掉的傍晚。訂 13:30–14:00 的班次，用原價換餘裕划算得多</div></div></section>
+<div class="city-divider lisbon">里斯本</div>
+<section id="d-10-8" class="day c-lisbon"><div class="day-head"><span class="tag">里斯本</span><h2><span class="date">10/8</span><span class="weekday">（四）</span>辛特拉 + 佩納宮 + 雷加萊拉 + 卡斯卡伊斯</h2></div><div class="day-body"><div class="route"><span class="rlabel">跟團</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Pal%C3%A1cio%20Nacional%20de%20Sintra%2C%20Sintra" target="_blank" rel="noopener">辛特拉宮</a><span class="sep">→</span><span class="plain">佩納宮</span><span class="sep">→</span><span class="plain">雷加萊拉莊園</span><span class="sep">→</span><span class="plain">卡斯卡伊斯</span></div><p>行程較滿、每點停留有限。雷加萊拉莊園（螺旋井、庭園）和卡斯卡伊斯海邊街道通常較能自由走動。</p><p>摩爾人城堡（<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Castelo%20dos%20Mouros%2C%20Sintra" target="_blank" rel="noopener">Castelo dos Mouros</a>）是否含在團內，建議跟旅行社再確認一次。</p><p>前一晚把電池、記憶卡都準備好，通常早出發、傍晚回，晚上安排輕鬆行程。</p><div class="eat"><h3>吃</h3><ul><li><span class="ename plain">午餐多半跟團或自理</span><span class="ehours">辛特拉山上餐廳偏貴，可在鎮上買 travesseiro 甜點墊胃</span></li></ul></div><div class="alert">已報名</div></div></section>
+<section id="d-10-9" class="day c-lisbon"><div class="day-head"><span class="tag">里斯本</span><h2><span class="date">10/9</span><span class="weekday">（五）</span>Alfama & Graça 老城區</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Convento%20do%20Carmo%2C%20Largo%20do%20Carmo%2C%20Lisboa" target="_blank" rel="noopener">Convento do Carmo</a><span class="sep">→</span><span class="plain">走 Baixa 往東</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Alfama%2C%20Lisboa" target="_blank" rel="noopener">Alfama 巷弄</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20Santa%20Luzia%2C%20Lisboa" target="_blank" rel="noopener">Miradouro de Santa Luzia</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Gra%C3%A7a%2C%20Lisboa" target="_blank" rel="noopener">Miradouro da Graça</a><span class="sep">→</span><span class="plain">晚上 Casa de Fado</span></div><p><strong>先從 Chiado 的 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Convento%20do%20Carmo%2C%20Largo%20do%20Carmo%2C%20Lisboa" target="_blank" rel="noopener">Convento do Carmo</a> 開始</strong>：1755 大地震留下的無屋頂哥德式廢墟，拱肋直接框著天空，以 40mm 來說是里斯本最好拍的地方之一。<strong>週日休館</strong>，10–7 月開 10:00–19:00、最後入場 18:40 — 所以只能排在這天，10/11 那個週日去不了。</p><p>從 Carmo 往東穿過 Baixa 走到 Alfama，剛好是一條由西往東的下坡散步線。上午在 Alfama 坡道巷弄拍照，白天適合純拍（法朵餐廳晚上才熱鬧）。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20de%20Santa%20Luzia%2C%20Lisboa" target="_blank" rel="noopener">Miradouro de Santa Luzia</a> 和 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Miradouro%20da%20Gra%C3%A7a%2C%20Lisboa" target="_blank" rel="noopener">Miradouro da Graça</a> 是俯瞰紅屋頂河景的經典角度。</p><div class="eat"><h3>吃</h3><ul><li><span class="ename plain">Alfama 小型 Casa de Fado</span> <span class="etype">晚餐＋現場法朵</span><span class="ehours">多數需訂位，觀光團多的大場子可以跳過</span></li></ul></div></div></section>
+<section id="d-10-10" class="day c-lisbon"><div class="day-head"><span class="tag">里斯本</span><h2><span class="date">10/10</span><span class="weekday">（六）</span>Belém + LX Factory</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Mosteiro%20dos%20Jer%C3%B3nimos%2C%20Lisboa" target="_blank" rel="noopener">Jerónimos Monastery</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Torre%20de%20Bel%C3%A9m%2C%20Lisboa" target="_blank" rel="noopener">Belém Tower</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Bel%C3%A9m%2084-92%2C%201300-085%20Lisboa" target="_blank" rel="noopener">Pastéis de Belém</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=MAAT%20Museum%2C%20Bel%C3%A9m%2C%201300-598%20Lisboa" target="_blank" rel="noopener">MAAT</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=LX%20Factory%2C%20Lisboa" target="_blank" rel="noopener">LX Factory</a><span class="sep">→</span><span class="plain">河岸夕陽</span></div><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Mosteiro%20dos%20Jer%C3%B3nimos%2C%20Lisboa" target="_blank" rel="noopener">Jerónimos Monastery</a> 外觀、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Torre%20de%20Bel%C3%A9m%2C%20Lisboa" target="_blank" rel="noopener">Belém Tower</a>，走路可達 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=MAAT%20Museum%2C%20Bel%C3%A9m%2C%201300-598%20Lisboa" target="_blank" rel="noopener">MAAT</a> 的波浪型建築＋當代藝術策展。</p><p>下午 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=LX%20Factory%2C%20Lisboa" target="_blank" rel="noopener">LX Factory</a>：塗鴉牆、Ler Devagar 書店、選品店咖啡館，傍晚河岸拍夕陽。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Bel%C3%A9m%2084-92%2C%201300-085%20Lisboa" target="_blank" rel="noopener">Pastéis de Belém</a> <span class="etype">本店現烤蛋塔</span><span class="ehours">排隊快 · 內用區比外帶隊伍好走</span></li><li><span class="ename plain">LX Factory 裡的咖啡館</span><span class="ehours">下午 · 塗鴉牆旁隨便找一間都有氣氛</span></li></ul></div><div class="alert">修道院／貝倫塔內部若要入內建議先買票</div></div></section>
+<section id="d-10-11" class="day c-lisbon"><div class="day-head"><span class="tag">里斯本</span><h2><span class="date">10/11</span><span class="weekday">（日）</span>自由日（早點收尾）</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Jardim%20do%20Pr%C3%ADncipe%20Real%2C%20Lisboa" target="_blank" rel="noopener">Príncipe Real</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Museu%20Calouste%20Gulbenkian%2C%20Av.%20de%20Berna%2045A%2C%20Lisboa" target="_blank" rel="noopener">Calouste Gulbenkian Museum</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=A%20Vida%20Portuguesa%2C%20R.%20Nova%20do%20Almada%2072%2C%201200-289%20Lisboa" target="_blank" rel="noopener">A Vida Portuguesa（Chiado）</a><span class="sep">→</span><span class="plain">二選一</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Time%20Out%20Market%20Lisboa%2C%20Cais%20do%20Sodr%C3%A9" target="_blank" rel="noopener">Time Out Market</a><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Mercado%20de%20Campo%20de%20Ourique%2C%20Lisboa" target="_blank" rel="noopener">Mercado de Campo de Ourique</a></div><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Museu%20Calouste%20Gulbenkian%2C%20Av.%20de%20Berna%2045A%2C%20Lisboa" target="_blank" rel="noopener">Calouste Gulbenkian Museum</a>：策展水準高、人潮少，古代收藏＋現代藝術中心＋庭園，是里斯本最舒服的室內行程。</p><p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Jardim%20do%20Pr%C3%ADncipe%20Real%2C%20Lisboa" target="_blank" rel="noopener">Príncipe Real</a> 一帶選品店和庭園咖啡適合補拍角落。</p><p><strong>最後的伴手禮日</strong>：<a class="pin" href="https://www.google.com/maps/search/?api=1&query=A%20Vida%20Portuguesa%2C%20R.%20Nova%20do%20Almada%2072%2C%201200-289%20Lisboa" target="_blank" rel="noopener">A Vida Portuguesa</a>（R. Nova do Almada 72，Chiado）是葡萄牙老牌選物的集大成，肥皂、罐頭、文具、陶瓷都有；<a class="pin" href="https://www.google.com/maps/search/?api=1&query=A%20Vida%20Portuguesa%2C%20Mercado%20da%20Ribeira%2C%20Lisboa" target="_blank" rel="noopener">Time Out Market 裡也有一間</a>（Loja 45），如果那天去 Time Out 就順手解決。</p><div class="eat"><h3>吃</h3><ul><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Time%20Out%20Market%20Lisboa%2C%20Cais%20do%20Sodr%C3%A9" target="_blank" rel="noopener">Time Out Market</a> <span class="etype">集合式美食市場</span><span class="ehours">選擇多但觀光客密集</span></li><li><a class="ename" href="https://www.google.com/maps/search/?api=1&query=Mercado%20de%20Campo%20de%20Ourique%2C%20Lisboa" target="_blank" rel="noopener">Mercado de Campo de Ourique</a> <span class="etype">在地市場，遊客少很多</span><span class="ehours">想避開人潮就選這間</span></li></ul></div><div class="alert">隔天早班機，晚上早點回住宿收行李、早睡</div></div></section>
+<section id="d-10-12" class="day c-move"><div class="day-head"><span class="tag">移動日</span><h2><span class="date">10/12</span><span class="weekday">（一）</span>賦歸｜9:00 班機</h2></div><div class="day-body"><div class="route"><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener">Residence Metro-Alameda</a><span class="sep">→</span><span class="plain">Bolt／Uber 06:00–06:15</span><span class="sep">→</span><a class="rp" href="https://www.google.com/maps/search/?api=1&query=Aeroporto%20Humberto%20Delgado%2C%20Lisboa" target="_blank" rel="noopener">里斯本機場</a><span class="sep">→</span><span class="plain">09:00 起飛</span></div><p>9:00 班機，目標 <strong>07:00 前到機場</strong>（非申根長程線抓 2 小時緩衝）。前一晚先預約 Bolt／Uber 或請住宿代叫計程車，車程約 15–20 分鐘。</p><p>備案是地鐵紅線：Alameda 首班車約 06:30，直達機場約 15 分鐘，抵達約 06:50 — 趕得上但沒有容錯空間，首班延誤或托運排隊就會很緊張，不建議當主要方案。</p><p>這天沒有活動時間。前一晚務必收好行李、設兩個鬧鐘、準備好路上要吃的東西。</p><div class="eat"><h3>吃</h3><ul><li><span class="ename plain">機場內用早餐</span><span class="ehours">過安檢後再吃，不要為了吃壓縮通關時間</span></li></ul></div></div></section>
+</div>
+<div id="tab-notes" hidden>
+<section id="plan" class="day planbox">
+  <div class="day-head">
+    <span class="tag">機動</span>
+    <h2>雨備規則</h2>
+  </div>
+  <div class="day-body">
+    <p><strong>只有度羅河谷需要訂票。</strong>吉馬良斯和布拉加的火車都是現場買、班次頻繁 — 所以下雨時你只要動度羅那一天，其他兩天互換沒有任何成本。</p>
+
+    <h3 class="psub">怕雨程度</h3>
+    <ul class="risk">
+      <li><span class="lv hi">高</span> 度羅河谷（梯田、開放式遊船、酒莊露台）· 布拉加耶穌山（戶外巴洛克階梯）</li>
+      <li><span class="lv mid">中</span> 吉馬良斯舊城（城堡和 Paço dos Duques 是室內，可退守）· Serralves + Foz（美術館室內可撐）· 阿威羅</li>
+      <li><span class="lv low">低</span> 10/2 市區（<a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20das%20Carmelitas%20144%2C%204050-161%20Porto" target="_blank" rel="noopener">Lello</a>、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Centro%20Portugu%C3%AAs%20de%20Fotografia%2C%20Porto" target="_blank" rel="noopener">攝影博物館</a>、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Santa%20Catarina%20112%2C%204000-442%20Porto" target="_blank" rel="noopener">Majestic</a>、<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Pal%C3%A1cio%20da%20Bolsa%2C%20Porto" target="_blank" rel="noopener">Bolsa</a>）· 10/6 選項A 波多深度日</li>
+    </ul>
+
+    <h3 class="psub">換法</h3>
+    <ul class="risk">
+      <li><b>度羅那天要下雨</b> → 出發前 24h 免費取消，跟 10/1 或 10/6 對調，吉馬良斯往前或往後填空</li>
+      <li><b>耶穌山那天要下雨</b> → 跟 10/6 對調，10/6 選項A 本來就是室內為主</li>
+      <li><b>10/2 不能動</b> → Switch 週五才開，Lello 也已經訂好時段</li>
+    </ul>
+
+    <h3 class="psub">看哪裡</h3>
+    <p><a class="pin" href="https://www.ipma.pt/en/otempo/prev.localidade.hora/" target="_blank" rel="noopener">IPMA 葡萄牙國家氣象局</a> 10 天預報：前 3 天逐小時、第 4–6 天每 3 小時、第 7–10 天每日。每天更新兩次，約 09–10 點和 21–22 點（當地時間）。手機可裝 Meteo@IPMA app。</p>
+
+    <div class="alert">標準訂對：<b>不需要晴天</b>。薄雲對拍照反而比正午硬光好，要避開的是整天持續降雨。波多十月本來就有十天上下的雨日，挑的是相對最好的那天，不是完美的那天。</div>
+  </div>
+</section>
+<section id="shop" class="day shopbox">
+  <div class="day-head">
+    <span class="tag">機動</span>
+    <h2>伴手禮怎麼排</h2>
+  </div>
+  <div class="day-body">
+    <p>食品類的關卡不是重量，是<strong>台灣的檢疫規定</strong>。先把能帶不能帶分清楚，再談怎麼裝。</p>
+
+    <h3 class="psub">食品：能帶什麼</h3>
+    <ul class="risk">
+      <li><span class="lv low">◎</span> <b>橄欖油</b> — 完全沒有檢疫問題，純粹是重量。<b>買鐵罐裝不要玻璃瓶</b>：輕、不會破、不怕撞。葡萄牙 Alentejo 和 Trás-os-Montes 的 DOP 等級很好</li>
+      <li><span class="lv low">◎</span> <b>蜂蜜</b> — 屬動物類加工食品，<b>可以帶</b>，一般蜂蜜或含蜂巢的都行。保留原包裝與成分標示，托運時套防漏袋。（含蜂蛹或蜜蜂屍體的要先洽防檢署）</li>
+      <li><span class="lv mid">○</span> <b>乳酪</b> — <b>要挑</b>。台灣規定<b>生乳、未殺菌乳製品、手工起司通常不得入境</b>。要買就買<b>工廠生產、商業包裝、標示 pasteurizado 的硬質乳酪</b>（如 Queijo de São Jorge、Queijo de Nisa）。市場攤上現切給你的那種手工生乳乳酪正好是會被攔下的</li>
+      <li><span class="lv mid">○</span> <b>沙丁魚罐頭</b> — 熟製加工、商業包裝，沒問題。包裝是葡萄牙最好看的設計之一</li>
+      <li><span class="lv mid">○</span> <b>Flor de sal 鹽之花</b> — 小罐裝沒問題</li>
+    </ul>
+
+    <div class="alert"><b>絕對不要碰：香腸、火腿、任何肉製品。</b>葡萄牙的 chouriço 煙燻香腸和 presunto 黑豬火腿非常誘人，但台灣為防非洲豬瘟全面禁止 — <b>初犯罰新台幣 20 萬，再犯 100 萬</b>，而且現在所有入境旅客行李都要過 X 光。真空包裝、商業包裝都一樣不行。這是整份清單唯一會讓你賠錢的東西。</div>
+
+    <h3 class="psub">重量預算</h3>
+    <p>法規上限是<b>農畜水產品合計 6 公斤</b>（且價值 1000 美元內）。但真正卡你的是航空托運額度，建議食品類抓 <b>2–3 公斤</b>就好，剩下留給輕的東西。抓個概念：</p>
+    <ul class="risk">
+      <li>500ml 橄欖油鐵罐 ≈ <b>0.6kg</b> · 250g 蜂蜜（含玻璃罐）≈ <b>0.4kg</b></li>
+      <li>硬質乳酪一塊 200–300g ≈ <b>0.3kg</b> · 沙丁魚罐頭一個 ≈ <b>0.12kg</b></li>
+      <li>375ml 半瓶波特酒 ≈ <b>0.7kg</b>（要買酒就買這個尺寸，別碰 750ml）</li>
+    </ul>
+    <p>油罐＋蜂蜜＋一塊乳酪＋四個罐頭 ≈ 1.8kg，還在很舒服的範圍。出發前確認一下阿提哈德這張票的托運額度是 23 還是 30 公斤。</p>
+
+    <h3 class="psub">不建議（純粹因為重與易碎）</h3>
+    <ul class="risk">
+      <li><span class="lv hi">×</span> <b>陶瓷</b>（Bordallo Pinheiro、Vista Alegre）、<b>磁磚 azulejo</b> — 重又怕摔，層層包裝也不一定保得住</li>
+    </ul>
+
+    <h3 class="psub">輕的那些（隨身行李就能帶）</h3>
+    <ul class="risk">
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20das%20Flores%2022%2C%204050-262%20Porto" target="_blank" rel="noopener">Claus Porto 肥皂</a> · 波多 R. das Flores 22 — <b>週二至週六 11:00–18:00，週日週一休</b> → 只有 10/2 和 10/6 去得成</li>
+      <li><b>軟木製品</b>（卡夾、杯墊、筆記本封面）· <b>Viarco 鉛筆</b>（葡萄牙唯一鉛筆廠，就在波多近郊）· <b>刺繡織品</b> — <a class="pin" href="https://www.google.com/maps/search/?api=1&query=A%20Vida%20Portuguesa%2C%20R.%20Nova%20do%20Almada%2072%2C%201200-289%20Lisboa" target="_blank" rel="noopener">A Vida Portuguesa</a> 一次買齊</li>
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Claus%20Porto%2C%20R.%20da%20Miseric%C3%B3rdia%20135%2C%20Lisboa" target="_blank" rel="noopener">Claus Porto 里斯本店</a> · R. da Misericórdia 135 — 波多沒買到補這裡，就在 10/7 晚上走上山那條路</li>
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=LX%20Factory%2C%20Lisboa" target="_blank" rel="noopener">LX Factory</a>（10/10）— 設計小物、Ler Devagar 書店</li>
+    </ul>
+
+    <h3 class="psub">食品在哪買 · 留到最後兩天</h3>
+    <p><b>油、蜂蜜、乳酪一律里斯本買</b>，不要從波多扛過去多背三天。10/11 那天兩個市場都能一次解決：</p>
+    <ul class="risk">
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Mercado%20de%20Campo%20de%20Ourique%2C%20Lisboa" target="_blank" rel="noopener">Mercado de Campo de Ourique</a> — 在地市場，遊客少，價格實在，熟食攤和乾貨攤都有</li>
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Time%20Out%20Market%20Lisboa%2C%20Cais%20do%20Sodr%C3%A9" target="_blank" rel="noopener">Time Out Market</a> — 裡面有 gourmet 攤位，<a class="pin" href="https://www.google.com/maps/search/?api=1&query=A%20Vida%20Portuguesa%2C%20Mercado%20da%20Ribeira%2C%20Lisboa" target="_blank" rel="noopener">A Vida Portuguesa 也有一間分店</a>（Loja 45）</li>
+      <li><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Mercado%20do%20Bolh%C3%A3o%2C%20Porto" target="_blank" rel="noopener">Mercado do Bolhão</a> · 波多（10/6）— 如果在波多就忍不住，這裡買也行，但記得要多背三天</li>
+    </ul>
+
+    <h3 class="psub">退稅</h3>
+    <p>門檻<b>每張發票 €50（未稅）</b>，實拿約 <b>14–16%</b>。橄欖油和蜂蜜是液體要托運，<b>托運品得在過安檢前的 landside 機台驗證、且趕在行李託運之前</b>，整套 30–45 分鐘。以食品這種金額多半湊不到門檻，<b>買不到 €200 就別辦</b>，10/12 早上省下來的時間比較值錢。</p>
+  </div>
+</section>
+<section id="station" class="day stationbox">
+  <div class="day-head">
+    <span class="tag">機動</span>
+    <h2>車站與住宿地址</h2>
+  </div>
+  <div class="day-body">
+    <h3 class="psub">住宿（叫車直接用這個地址）</h3>
+    <ul class="risk">
+      <li><b>波多 9/30–10/7</b><br><a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Faria%20Guimar%C3%A3es%20779%2C%204200-291%20Porto" target="_blank" rel="noopener">Hotel Palanca</a> · <b>R. de Faria Guimarães 779, 4200-291 Porto</b><br><span class="sub">最近地鐵：Marquês（D 線 / 黃線）</span></li>
+      <li><b>里斯本 10/7–10/12</b><br><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener">Residence Metro-Alameda</a> · <b>Av. Guerra Junqueiro 14, 1000-167 Lisboa</b><br><span class="sub">最近地鐵：Alameda（綠線 + 紅線）</span></li>
+    </ul>
+
+    <h3 class="psub">波多：兩個火車站不要搞混</h3>
+    <p><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a> 在市中心、<b>在地鐵 D 線（黃線）上</b>，從你住的 Marquês 可以<b>直達不用轉車</b>。<a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Campanhã</a> 是長途站，<b>不在 D 線上</b>，要先到 Trindade 換車。</p>
+    <ul class="risk">
+      <li><span class="lv low">São Bento</span> <b>10/1 吉馬良斯 · 10/5 布拉加 · 10/6 阿威羅</b> — Urbanos 的起點站，現場買票<br><span class="sub">Marquês →（D 線，約 4 站）→ São Bento</span></li>
+      <li><span class="lv hi">Campanhã</span> <b>10/7 去里斯本的 AP</b>（13:30–14:00 出發）— 只有這一次<br><span class="sub">當天從 São Bento 搭一站過來即可，不用回飯店</span></li>
+    </ul>
+
+    <h3 class="psub">逐日搭車</h3>
+    <ul class="risk">
+      <li><b>9/30 抵達</b> <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Aeroporto%20Humberto%20Delgado%2C%20Lisboa" target="_blank" rel="noopener">里斯本機場</a> → 紅線 → <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20do%20Oriente%2C%20Lisboa" target="_blank" rel="noopener">Oriente</a> → AP → <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Campanhã</a> → 地鐵到 Trindade 換 D 線 → Marquês → <a class="pin" href="https://www.google.com/maps/search/?api=1&query=R.%20de%20Faria%20Guimar%C3%A3es%20779%2C%204200-291%20Porto" target="_blank" rel="noopener">Hotel Palanca</a></li>
+      <li><b>10/1 · 10/5 · 10/6B</b> Marquês →（D 線直達）→ <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a> → Urbanos</li>
+      <li><b>10/4 度羅河谷</b> 集合點由旅行社指定，訂票時確認是市區定點還是飯店接送</li>
+      <li><b>10/7 移動</b> 11:00 退房（行李帶著）→ D 線 Marquês 直達 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20S%C3%A3o%20Bento%2C%20Porto" target="_blank" rel="noopener">São Bento</a>（看花磚＋R. das Flores 午餐）→ 一站到 <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20de%20Campanh%C3%A3%2C%20Porto" target="_blank" rel="noopener">Campanhã</a> <b>13:30–14:00</b> → <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Esta%C3%A7%C3%A3o%20do%20Oriente%2C%20Lisboa" target="_blank" rel="noopener">Lisboa Oriente</a> <b>16:15–16:45</b> → 紅線直達 → Alameda<br><span class="sub">行李不要寄放後回頭拿，來回一趟多花一小時</span></li>
+      <li><b>10/8 辛特拉</b> 集合點由旅行社指定</li>
+      <li><b>10/9–10/11</b> 都從 Alameda 出發：綠線去 Baixa-Chiado／Cais do Sodré 方向，紅線去 São Sebastião（Gulbenkian）方向</li>
+      <li><b>10/12 賦歸</b> <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Av.%20Guerra%20Junqueiro%2014%2C%201000-167%20Lisboa" target="_blank" rel="noopener">Residence Metro-Alameda</a> → Bolt／Uber 15–20 分 → <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Aeroporto%20Humberto%20Delgado%2C%20Lisboa" target="_blank" rel="noopener">里斯本機場</a><br><span class="sub">備案紅線 Alameda → Aeroporto 直達約 15 分，但首班約 06:30 太趕</span></li>
+    </ul>
+    <div class="alert">里斯本這兩段都是<b>紅線直達</b>，不用轉車：Oriente ↔ Alameda（10/7 抵達）、Alameda ↔ Aeroporto（10/12 備案）。這是當初選這間住宿最大的好處。</div>
+  </div>
+</section>
+</div>
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function show(name, scroll){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.tab === name); });
+    ['days','notes'].forEach(function(n){
+      var nav = document.getElementById('nav-' + n), pane = document.getElementById('tab-' + n);
+      if (nav) nav.hidden = (n !== name);
+      if (pane) pane.hidden = (n !== name);
+    });
+    if (scroll) window.scrollTo(0, 0);
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.tab, true); });
+  });
+  function fromHash(){
+    var h = location.hash.replace('#','');
+    if (!h) return;
+    var el = document.getElementById(h);
+    if (!el) return;
+    var pane = el.closest('#tab-days, #tab-notes');
+    if (pane) show(pane.id.replace('tab-',''), false);
+    setTimeout(function(){ el.scrollIntoView(); }, 0);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</main>
+
+<footer>
+  點地點名稱可直接開 Google Maps 導航。這份網頁需要網路，建議同時保留手機裡的離線 PDF 備用版。
+</footer>
+
+</body>
+</html>
